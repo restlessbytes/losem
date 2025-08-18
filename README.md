@@ -1,5 +1,3 @@
-# `losem` - your friendly, local vector search engine. 
-
 `losem` is a CLI tool to perform semantic (_and keyword_) search on local documents (text, Markdown, PDFs), powered by
 [LangChain](https://www.langchain.com/) as well as [DuckDb's new vector similarity search extension](https://duckdb.org/docs/stable/core_extensions/vss)
 
@@ -27,7 +25,7 @@ Make sure you have these programs installed:
 
 ### Installation
 
-There's no official `losem` Python package yet, so the easiest way to install it is to cloen the repo
+There's no official `losem` Python package yet, so the easiest way to install it is to clone the repo
 and then create a symlink from `main.py` into your user's `bin/` folder: 
 
 ```bash
@@ -84,3 +82,45 @@ Loading and searching documents is basically a three-stage process:
 3. Search:
    * Semantic: Query embedding → vector comparison
    * Keyword: DuckDB SQL full-text matching
+
+## Output formats
+
+Per default, `losem` prints results to stdout in plain text for two reasons:
+
+1. Plain text (streams) is a "_universal interface_" or format according to the _Unix philosophy_[^1]
+2. Plain text snippets can be inserted into your prompt(s) right away
+
+However, using `--format json` gives you results formatted as JSON objects of the following form:
+
+```json
+[
+   {
+    "document_id": "cc275d49f852b43cb6ce1a280134ca18",
+    "id": "48ccbcad0ce0bf8ec99e9b9b43a815d1",
+    "enumeration": 1471,
+    "content": "Those in the city imagined that Piraeus was already taken and the prisoner put to death, ...",
+    "filename": "Peloponnesian_War.txt",
+    "filepath": "test-data/Peloponnesian_War.txt",
+    "data_type": "text"
+  }, 
+  ...
+]
+```
+
+As you can see, JSON results also contain metadata such as `enumeration` and `filepath` which may come in handy
+if you want to process them further.
+
+## Roadmap
+
+Here's a list of some planned features and improvements for `losem`:
+
+- [ ] add support for office docs (`.docx`, `.odt` etc.)
+- [ ] add support for EPUB files
+- [ ] add support for alternative embedding backends
+
+## Contributing
+
+This is really just a small, personal project but if you want to help, feel free to reach out or open an issue (or PR) :)
+
+
+[^1]: "_Write programs to handle text streams, because that is a universal interface._" - Doug McIlroy
