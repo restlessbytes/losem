@@ -24,8 +24,8 @@ clean:
 clean-all:
   uv run pyclean . --verbose --debris
 
-test *file:
-  uv run pytest losem/tests/{{ file }}
+test:
+  uv run pytest
 
 check *file:
   uv run pyright {{ file }}

@@ -25,12 +25,14 @@ Make sure you have these programs installed:
 
 ### Installation
 
-There's no official `losem` Python package yet, so the easiest way to install it is to clone the repo
-and then create a symlink from `main.py` into your user's `bin/` folder: 
+There's no official `losem` Python package yet, so the easiest way to install it is to clone the repo,
+install dependencies and then create a symlink from `main.py` into your user's `bin/` folder:
 
 ```bash
 $ cd ~
 $ git clone git@github.com:restlessbytes/losem.git
+$ cd losem/
+$ pip install .
 $ chmod +x losem/main.py
 $ ln -s ~/losem/main.py ~/.local/bin/losem
 ```
